@@ -19,6 +19,7 @@ export default function Nav() {
 
       <div className={styles.links}>
         <a href="#benefits">활동 혜택</a>
+        <a href="#activities">활동 사진</a>
         <a href="#awards">수상내역</a>
         <a href="#apply">지원하기</a>
       </div>

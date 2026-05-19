@@ -1,11 +1,11 @@
 .footer {
   border-top: 1px solid var(--border);
-  padding: 40px 48px;
+  padding: 36px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
 }
 
 .logo {
@@ -18,19 +18,30 @@
 }
 
 .copy {
-  font-size: 0.8rem;
-  color: var(--muted);
+  font-size: 0.78rem;
+  color: #3a3a4a;
 }
 
-.email {
-  font-size: 0.8rem;
-  color: var(--muted);
+/* 깃허브 — 의도적으로 눈에 안 띄게 */
+.github {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #3a3a4a;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.github:hover {
+  color: #6060808;
 }
 
 @media (max-width: 768px) {
   .footer {
-    padding: 32px 20px;
+    padding: 28px 20px;
     flex-direction: column;
-    text-align: center;
+    align-items: flex-start;
+    gap: 10px;
   }
 }

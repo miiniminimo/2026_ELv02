@@ -1,4 +1,3 @@
-import introVideo from '../assets/EL intro.mp4'
 import styles from './Hero.module.css'
 
 export default function Hero() {
@@ -6,7 +5,7 @@ export default function Hero() {
     <section className={styles.hero}>
       <video
         className={styles.video}
-        src={introVideo}
+        src="/EL_intro.mp4"
         autoPlay
         muted
         loop

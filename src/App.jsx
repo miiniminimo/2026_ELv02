@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import Stats from './components/Stats'
 import Benefits from './components/Benefits'
+import Activities from './components/Activities'
 import Awards from './components/Awards'
 import Apply from './components/Apply'
 import Footer from './components/Footer'
@@ -29,8 +29,8 @@ export default function App() {
     <>
       <Nav />
       <Hero />
-      <Stats />
       <Benefits />
+      <Activities />
       <Awards />
       <Apply />
       <Footer />
