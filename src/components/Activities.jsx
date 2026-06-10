@@ -20,11 +20,11 @@ const ACTIVITIES = [
 ]
 
 const CATEGORY_COLOR = {
-  STUDY:   '#6C63FF',
-  PROJECT: '#00D4FF',
-  NETWORK: '#F5C842',
-  EVENT:   '#FF6B9D',
-  AWARD:   '#4ADE80',
+  STUDY:   '#FFFFFF',           /* 화이트 */
+  PROJECT: '#1A4FFF',           /* 코발트 블루 */
+  NETWORK: '#6B9FFF',           /* 미디엄 코발트 */
+  EVENT:   '#A8C4FF',           /* 라이트 코발트 */
+  AWARD:   '#D4E4FF',           /* 아이스 블루 */
 }
 
 // 홀수 인덱스 → 왼쪽 열 / 짝수 인덱스 → 오른쪽 열

@@ -9,17 +9,15 @@
 }
 
 .logo {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 1.1rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  height: 28px;
+  width: auto;
+  display: block;
+  opacity: 0.7;
 }
 
 .copy {
   font-size: 0.78rem;
-  color: #3a3a4a;
+  color: var(--muted);
 }
 
 /* 깃허브 — 의도적으로 눈에 안 띄게 */
@@ -27,14 +25,14 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #3a3a4a;
+  color: var(--muted);
   font-size: 0.78rem;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .github:hover {
-  color: #6060808;
+  color: #606080;
 }
 
 @media (max-width: 768px) {

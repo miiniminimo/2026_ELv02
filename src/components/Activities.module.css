@@ -7,7 +7,7 @@
   margin: 0 auto;
 }
 
-/* ── 왼쪽: sticky 텍스트 ─────────────────────────── */
+/* ── 왼쪽 sticky 텍스트 ─────────────────────────── */
 .left {
   width: 300px;
   flex-shrink: 0;
@@ -23,7 +23,7 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent2);
+  color: var(--accent);
   margin-bottom: 20px;
 }
 
@@ -41,21 +41,35 @@
   line-height: 1.9;
 }
 
-/* ── 오른쪽: columns 교차 배열 ──────────────────── */
-.right {
+/* ── 오른쪽 두 열 그리드 ─────────────────────────── */
+.grid {
   flex: 1;
-  columns: 2;           /* 2열 masonry flow */
-  column-gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;   /* 각 열이 독립적으로 위에서 시작 */
+}
+
+/* 왼쪽 열: 위에서 바로 시작 */
+.colLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 오른쪽 열: 아래로 밀어서 교차 효과 */
+.colRight {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 80px;     /* ← 이게 핵심: 오른쪽 열을 아래로 밀어 교차 배열 */
 }
 
 /* ── 카드 ─────────────────────────────────────────── */
 .card {
-  break-inside: avoid;  /* 카드가 열 사이에서 잘리지 않게 */
-  margin-bottom: 16px;
   cursor: pointer;
 }
 
-/* 이미지 래퍼 */
 .imgWrap {
   width: 100%;
   border-radius: 14px;
@@ -64,7 +78,7 @@
   background: var(--surface);
 }
 
-/* 비율 변형 */
+/* 비율 */
 .tall   { aspect-ratio: 3 / 4; }
 .square { aspect-ratio: 1 / 1; }
 .wide   { aspect-ratio: 4 / 3; }
@@ -89,13 +103,13 @@
   align-items: center;
   justify-content: center;
   font-size: 2.5rem;
-  opacity: 0.25;
+  opacity: 0.2;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
 }
 
-/* 카드 아래 텍스트 — 항상 보임 (이목디자인 스타일) */
+/* 카드 아래 텍스트 */
 .cardInfo {
   padding: 10px 4px 4px;
 }
@@ -127,8 +141,16 @@
     position: static;
     margin-bottom: 40px;
   }
+  .colRight {
+    margin-top: 48px; /* 모바일에서 오프셋 줄이기 */
+  }
 }
 
 @media (max-width: 480px) {
-  .right { columns: 1; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .colRight {
+    margin-top: 0;
+  }
 }

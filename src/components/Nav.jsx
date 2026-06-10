@@ -15,7 +15,13 @@ export default function Nav() {
 
   return (
     <nav className={`${styles.nav} ${atTop ? styles.transparent : styles.solid}`}>
-      <span className={styles.logo}>EL</span>
+      <a href="#" className={styles.logoWrap}>
+        <img
+          src="/EL_logo.png"
+          alt="EL"
+          className={styles.logoImg}
+        />
+      </a>
 
       <div className={styles.links}>
         <a href="#benefits">활동 혜택</a>

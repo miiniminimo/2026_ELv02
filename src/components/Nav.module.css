@@ -6,32 +6,53 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 48px;
-  transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease,
+              border-color 0.4s ease, box-shadow 0.4s ease;
   border-bottom: 1px solid transparent;
 }
 
-/* 영상 섹션 위 — 완전 투명 */
+/* 영상 위 — 완전 투명, 흰 텍스트 */
 .transparent {
   background: transparent;
   backdrop-filter: none;
   border-bottom-color: transparent;
 }
 
-/* 스크롤 내려갔을 때 — 반투명 배경 */
+.transparent .links a { color: rgba(255, 255, 255, 0.85); }
+.transparent .logo { filter: brightness(10); }   /* 로고 흰색으로 */
+
+/* 스크롤 내려가면 — 흰 배경 */
 .solid {
-  background: rgba(8, 8, 16, 0.72);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-bottom-color: var(--border);
+  box-shadow: 0 1px 24px rgba(26, 79, 255, 0.06);
 }
 
-.logo {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 0.12em;
+.solid .links a { color: var(--muted); }
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  height: 36px;
+  width: auto;
+  display: block;
+  transition: filter 0.4s ease;
+}
+
+/* 영상 위(투명 상태)에서는 로고를 흰색으로 */
+.transparent .logoImg {
+  filter: brightness(0) invert(1);
+}
+
+/* 흰 배경 위에서는 원본 색상 그대로 */
+.solid .logoImg {
+  filter: none;
 }
 
 .links {
@@ -40,7 +61,6 @@
 }
 
 .links a {
-  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -49,7 +69,7 @@
 }
 
 .links a:hover {
-  color: var(--accent2);
+  color: var(--accent) !important;
 }
 
 .cta {

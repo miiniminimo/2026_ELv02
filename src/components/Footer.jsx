@@ -6,7 +6,7 @@ const GITHUB_URL = 'https://github.com/your-org'
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <span className={styles.logo}>EL</span>
+      <img src="/EL_logo.png" alt="EL" className={styles.logo} />
 
       <p className={styles.copy}>© 2026 Engineering Leaders. All rights reserved.</p>
 
