@@ -1,9 +1,33 @@
+import { useRef, useEffect } from 'react'
 import styles from './Hero.module.css'
 
 export default function Hero() {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    let rafId = null
+    const handleScroll = () => {
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        if (videoRef.current) {
+          const progress = Math.min(window.scrollY / window.innerHeight, 1)
+          const scale = 1 + progress * 0.14
+          videoRef.current.style.transform = `scale(${scale})`
+        }
+        rafId = null
+      })
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
+  }, [])
+
   return (
     <section className={styles.hero}>
       <video
+        ref={videoRef}
         className={styles.video}
         src="/EL_intro.mp4"
         autoPlay

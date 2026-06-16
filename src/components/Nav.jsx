@@ -5,12 +5,28 @@ export default function Nav() {
   const [atTop, setAtTop] = useState(true)
 
   useEffect(() => {
-    // hero 섹션 높이(100vh)를 기준으로 투명 ↔ 불투명 전환
+    let rafId = null
+    let current = true   // 현재 atTop 값 추적 (re-render 없이)
+
     const handleScroll = () => {
-      setAtTop(window.scrollY < window.innerHeight - 80)
+      // rAF로 throttle: 프레임당 최대 1회만 계산
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        const next = window.scrollY < window.innerHeight - 80
+        // 값이 실제로 바뀔 때만 setState → 불필요한 transition 차단
+        if (next !== current) {
+          current = next
+          setAtTop(next)
+        }
+        rafId = null
+      })
     }
+
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (
