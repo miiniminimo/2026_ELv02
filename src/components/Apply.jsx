@@ -1,7 +1,7 @@
 import styles from './Apply.module.css'
 
 // ↓ 폼 신청 URL을 여기에 입력하세요 (Google Forms, Tally 등)
-const FORM_URL = 'https://forms.gle/여기에링크입력'
+const FORM_URL = 'https://smore.im/form/bq4xsUvMFq'
 
 export default function Apply() {
   return (

@@ -1,7 +1,7 @@
 import styles from './Footer.module.css'
 
 // ↓ 깃허브 주소 입력
-const GITHUB_URL = 'https://github.com/your-org'
+const GITHUB_URL = 'https://github.com/el-dmu'
 
 export default function Footer() {
   return (
