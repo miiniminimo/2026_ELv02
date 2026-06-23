@@ -1,18 +1,30 @@
 .footer {
-  border-top: 1px solid var(--border);
   padding: 36px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
+
+  /* 흰 배경으로 히어로 영상 가림 — 박스처럼 보이지 않음(body도 흰색) */
+  background: var(--bg);
+}
+
+/* 내용물만 투명 처리 → 배경은 유지 */
+.footer > * {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* 호버 시 내용 등장 */
+.footer:hover > * {
+  opacity: 1;
 }
 
 .logo {
   height: 28px;
   width: auto;
   display: block;
-  opacity: 0.7;
 }
 
 .copy {
@@ -20,7 +32,6 @@
   color: var(--muted);
 }
 
-/* 깃허브 — 의도적으로 눈에 안 띄게 */
 .github {
   display: inline-flex;
   align-items: center;
@@ -28,11 +39,11 @@
   color: var(--muted);
   font-size: 0.78rem;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s, opacity 0.4s ease;
 }
 
 .github:hover {
-  color: #606080;
+  color: var(--accent);
 }
 
 @media (max-width: 768px) {

@@ -130,10 +130,23 @@
 }
 
 /* ── 반응형 ──────────────────────────────────────── */
+
+/* 1024px 이하: 왼쪽 패널 살짝 축소 */
+@media (max-width: 1024px) {
+  .section {
+    padding: 100px 32px;
+  }
+  .left {
+    width: 220px;
+    padding-right: 40px;
+  }
+}
+
+/* 900px 이하: 세로 스택 전환 */
 @media (max-width: 900px) {
   .section {
     flex-direction: column;
-    padding: 80px 20px;
+    padding: 80px 24px;
   }
   .left {
     width: 100%;
@@ -141,12 +154,21 @@
     position: static;
     margin-bottom: 40px;
   }
+  /* 명시적으로 100% 지정 — 없으면 콘텐츠 크기로 줄어듦 */
+  .grid {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+  }
   .colRight {
-    margin-top: 48px; /* 모바일에서 오프셋 줄이기 */
+    margin-top: 48px;
   }
 }
 
-@media (max-width: 480px) {
+/* 520px 이하: 단일 컬럼 */
+@media (max-width: 520px) {
+  .section {
+    padding: 60px 16px;
+  }
   .grid {
     grid-template-columns: 1fr;
   }

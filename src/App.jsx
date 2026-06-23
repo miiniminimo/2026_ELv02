@@ -41,15 +41,17 @@ export default function App() {
       const vh = window.innerHeight
       const sy = window.scrollY
 
-      // ── 메인 카드: 작은 박스 → 전체 너비로 펼쳐짐 ──
-      // transform-origin: center top → 카드 상단이 고정된 채 좌우로 펼쳐짐
-      // sy=0        → scale 0.60, opacity 0,   4방향 radius 28px
-      // sy=vh*1.30  → scale 1.00, opacity 1.0, 상단 radius만 유지
-      const p = Math.max(0, Math.min(1, sy / (vh * 1.30)))   // 느린 속도
+      // ── spacer = 130vh이므로 카드 상단이 뷰포트 바닥에 닿는 시점 = scrollY 30vh ──
+      // 그 시점(entryScrollY)부터 애니메이션 시작 → 카드가 처음 보일 때 scale 0.50
+      const SPACER_VH    = 1.30
+      const entryScrollY = (SPACER_VH - 1.0) * vh   // 0.30 * vh
+      const animDuration = vh * 1.0                  // 1 viewport 높이 동안 펼쳐짐
 
-      const scale    = 0.60 + p * 0.40                        // 0.60 → 1.00
-      const opacity  = Math.pow(p, 0.65)                      // 초반에 빠르게 나타남
-      const brBottom = (1 - p) * 28                           // 28px → 0px
+      const p = Math.max(0, Math.min(1, (sy - entryScrollY) / animDuration))
+
+      const scale    = 0.50 + p * 0.50          // 0.50 → 1.00  (더 극적으로)
+      const opacity  = Math.pow(p, 0.5)         // 초반 빠르게 나타남
+      const brBottom = (1 - p) * 28             // 28px → 0px
 
       el.style.transform       = `scale(${scale.toFixed(4)})`
       el.style.transformOrigin = 'center top'
@@ -81,8 +83,10 @@ export default function App() {
         <Activities />
         <Awards />
         <Apply />
-        <Footer />
       </main>
+
+      {/* 푸터: 흰 카드 밖에 위치 → 자체 배경 없음, 호버 시 나타남 */}
+      <Footer />
     </>
   )
 }
