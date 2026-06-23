@@ -6,20 +6,26 @@ export default function Hero() {
 
   useEffect(() => {
     let rafId = null
-    const handleScroll = () => {
-      if (rafId) return
-      rafId = requestAnimationFrame(() => {
-        if (videoRef.current) {
-          const progress = Math.min(window.scrollY / window.innerHeight, 1)
-          const scale = 1 + progress * 0.14
-          videoRef.current.style.transform = `scale(${scale})`
-        }
-        rafId = null
-      })
+
+    const update = () => {
+      if (videoRef.current) {
+        const progress = Math.min(window.scrollY / window.innerHeight, 1)
+        const scale = 1 + progress * 0.14
+        videoRef.current.style.transform = `scale(${scale})`
+      }
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    const onScroll = () => {
+      if (rafId) return
+      rafId = requestAnimationFrame(() => { update(); rafId = null })
+    }
+
+    update() // 초기값
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', update, { passive: true })
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', update)
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])

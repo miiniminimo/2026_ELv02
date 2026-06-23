@@ -61,8 +61,10 @@ export default function App() {
 
     _update()  // 초기 상태 적용
     window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', _update, { passive: true })
     return () => {
       window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', _update)
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
