@@ -1,5 +1,5 @@
 .section {
-  background: #080810;
+  background: #06060f;
   padding: 80px 0 100px;
   overflow: hidden;
   user-select: none;
@@ -10,79 +10,66 @@
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.25);
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .hint {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.15);
   text-align: center;
-  letter-spacing: 0.1em;
-  margin-bottom: 48px;
+  letter-spacing: 0.14em;
+  margin-bottom: 52px;
 }
 
 /* 스크롤 트랙 */
 .track {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: visible;   /* rotateY 결과가 세로로 잘리지 않게 */
   cursor: grab;
-  padding: 0 10vw;   /* 양끝 여백 — 페이드와 함께 엣지 감 */
-  scroll-behavior: auto;
+  padding: 40px 28vw;   /* 충분한 좌우 패딩 → 중앙 정렬된 시작 */
 
-  /* 스크롤바 숨김 */
   scrollbar-width: none;
   -ms-overflow-style: none;
 
-  /* 양쪽 엣지 페이드 — 필름스트립 곡면 느낌 */
+  /* 양 끝 페이드 */
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0,0,0,0.6) 6%,
-    black 14%,
-    black 86%,
-    rgba(0,0,0,0.6) 94%,
+    black 18%,
+    black 82%,
     transparent 100%
   );
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0,0,0,0.6) 6%,
-    black 14%,
-    black 86%,
-    rgba(0,0,0,0.6) 94%,
+    black 18%,
+    black 82%,
     transparent 100%
   );
 }
 
 .track::-webkit-scrollbar { display: none; }
 
-.grabbing {
-  cursor: grabbing;
-  scroll-behavior: auto;
-}
+.grabbing { cursor: grabbing; }
 
 /* 이미지 아이템 */
 .item {
   flex-shrink: 0;
-  height: 58vh;
+  height: 55vh;
   aspect-ratio: 3 / 2;
   position: relative;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
-  background: #1a1a2e;
+  background: #12121e;
 
-  /* 첫 번째·마지막 근처 항목에 살짝 어두운 필터 — CSS만으로 엣지 감 */
-  transition: filter 0.3s ease, transform 0.3s ease;
-}
-
-.item:hover {
-  filter: brightness(1.08);
-  transform: scale(1.015);
-  z-index: 1;
+  /* JS가 transform, filter 덮어씀 */
+  transition: transform 0.08s linear, filter 0.08s linear;
+  will-change: transform, filter;
 }
 
 .img {
@@ -100,16 +87,17 @@
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  opacity: 0.15;
+  opacity: 0.12;
   color: #fff;
 }
 
 @media (max-width: 768px) {
-  .section { padding: 60px 0 80px; }
-  .item { height: 40vh; }
-  .track { padding: 0 6vw; gap: 8px; }
+  .section  { padding: 60px 0 80px; }
+  .item     { height: 38vh; }
+  .track    { padding: 30px 20vw; gap: 8px; }
 }
 
 @media (max-width: 480px) {
-  .item { height: 30vh; }
+  .item  { height: 28vh; }
+  .track { padding: 24px 12vw; }
 }
