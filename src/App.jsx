@@ -5,6 +5,7 @@ import Benefits from './components/Benefits'
 import Activities from './components/Activities'
 import Awards from './components/Awards'
 import Apply from './components/Apply'
+import HorizontalGallery from './components/HorizontalGallery'
 import Footer from './components/Footer'
 import styles from './App.module.css'
 
@@ -84,6 +85,7 @@ export default function App() {
         <Benefits />
         <Activities />
         <Awards />
+        <HorizontalGallery />
         <Apply />
       </main>
 

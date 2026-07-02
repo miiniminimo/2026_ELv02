@@ -1,0 +1,115 @@
+.section {
+  background: #080810;
+  padding: 80px 0 100px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-bottom: 48px;
+}
+
+/* 스크롤 트랙 */
+.track {
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  cursor: grab;
+  padding: 0 10vw;   /* 양끝 여백 — 페이드와 함께 엣지 감 */
+  scroll-behavior: auto;
+
+  /* 스크롤바 숨김 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  /* 양쪽 엣지 페이드 — 필름스트립 곡면 느낌 */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0,0,0,0.6) 6%,
+    black 14%,
+    black 86%,
+    rgba(0,0,0,0.6) 94%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0,0,0,0.6) 6%,
+    black 14%,
+    black 86%,
+    rgba(0,0,0,0.6) 94%,
+    transparent 100%
+  );
+}
+
+.track::-webkit-scrollbar { display: none; }
+
+.grabbing {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+/* 이미지 아이템 */
+.item {
+  flex-shrink: 0;
+  height: 58vh;
+  aspect-ratio: 3 / 2;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #1a1a2e;
+
+  /* 첫 번째·마지막 근처 항목에 살짝 어두운 필터 — CSS만으로 엣지 감 */
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.item:hover {
+  filter: brightness(1.08);
+  transform: scale(1.015);
+  z-index: 1;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  opacity: 0.15;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 60px 0 80px; }
+  .item { height: 40vh; }
+  .track { padding: 0 6vw; gap: 8px; }
+}
+
+@media (max-width: 480px) {
+  .item { height: 30vh; }
+}
