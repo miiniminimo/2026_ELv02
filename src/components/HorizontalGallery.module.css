@@ -78,6 +78,9 @@
   object-fit: cover;
   display: block;
   pointer-events: none;
+  /* 초상권 보호용 블러 — 원본 파일은 그대로 두고 화면에서만 흐리게 처리 */
+  filter: blur(2px);
+  transform: scale(1.02);  /* 블러로 가장자리가 비치 않도록 살짝 확대 */
 }
 
 .placeholder {
