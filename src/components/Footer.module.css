@@ -1,4 +1,6 @@
 .footer {
+  position: relative;   /* fixed Hero(z-index:1)보다 위 레이어에서 그려지도록 */
+  z-index: 10;
   padding: 36px 48px;
   display: flex;
   align-items: center;

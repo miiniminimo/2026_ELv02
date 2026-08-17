@@ -6,19 +6,6 @@ const FORM_URL = 'https://smore.im/form/bq4xsUvMFq'
 export default function Apply() {
   return (
     <section id="apply" className={styles.section}>
-      {/* 배경 비디오 */}
-      <video
-        className={styles.video}
-        src="/EL_outro.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
-
-      {/* 어두운 오버레이 */}
-      <div className={styles.overlay} />
-
       {/* 콘텐츠 */}
       <div className={styles.content}>
         <p className={`${styles.label} fade-up`}>Join Us</p>
