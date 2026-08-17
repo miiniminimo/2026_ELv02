@@ -19,11 +19,6 @@ const ACTIVITIES = [
   { img: '/activities/activity10.jpg', title: '메가시티 리그전 수상',         category: 'AWARD', ratio: 'square' },
 ]
 
-const CATEGORY_COLOR = {
-  EVENT: '#3B82F6',           /* 블루 */
-  AWARD: '#C9840A',           /* 골드 */
-}
-
 // 홀수 인덱스 → 왼쪽 열 / 짝수 인덱스 → 오른쪽 열
 const leftCol  = ACTIVITIES.filter((_, i) => i % 2 === 0)
 const rightCol = ACTIVITIES.filter((_, i) => i % 2 !== 0)
