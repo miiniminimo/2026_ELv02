@@ -19,14 +19,6 @@ const ACTIVITIES = [
   { img: '/activities/activity10.jpg', title: '오픈소스 컨트리뷰션', category: 'PROJECT', ratio: 'wide'   },
 ]
 
-const CATEGORY_COLOR = {
-  STUDY:   '#1A4FFF',           /* 코발트 블루 */
-  PROJECT: '#0030CC',           /* 딥 코발트 */
-  NETWORK: '#6B9FFF',           /* 미디엄 코발트 */
-  EVENT:   '#3B82F6',           /* 블루 */
-  AWARD:   '#C9840A',           /* 골드 */
-}
-
 // 홀수 인덱스 → 왼쪽 열 / 짝수 인덱스 → 오른쪽 열
 const leftCol  = ACTIVITIES.filter((_, i) => i % 2 === 0)
 const rightCol = ACTIVITIES.filter((_, i) => i % 2 !== 0)
@@ -49,9 +41,7 @@ function Card({ img, title, category, ratio }) {
 
       {/* 카드 아래 텍스트 */}
       <div className={styles.cardInfo}>
-        <span className={styles.cardCategory} style={{ color: CATEGORY_COLOR[category] }}>
-          #{category}
-        </span>
+        <span className={styles.cardCategory}>#{category}</span>
         <p className={styles.cardTitle}>{title}</p>
       </div>
     </div>

@@ -20,10 +20,10 @@
   opacity: 0;
   transform: scale(0.50);
   transform-origin: center top;
-  border-radius: 28px;          /* 4방향 모두 */
+  border-radius: var(--radius-card);   /* 4방향 모두 */
 
-  /* 그림자: 카드가 떠오르는 느낌 */
+  /* 그림자: 카드가 떠오르는 느낌 (Level 1 — 은은한 블랙 드롭) */
   box-shadow:
-    0 -28px 90px rgba(0, 10, 50, 0.20),
-    0 -6px  24px rgba(0, 10, 50, 0.10);
+    0 -20px 60px rgba(0, 0, 0, 0.12),
+    0 -4px  16px rgba(0, 0, 0, 0.08);
 }

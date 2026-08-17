@@ -1,8 +1,21 @@
 import { useState, useEffect } from 'react'
 import styles from './Nav.module.css'
 
+const LINKS = [
+  { href: '#benefits', label: '활동 혜택' },
+  { href: '#activities', label: '활동 사진' },
+  { href: '#awards', label: '수상내역' },
+  { href: '#apply', label: '지원하기' },
+]
+
 export default function Nav() {
   const [atTop, setAtTop] = useState(true)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
   useEffect(() => {
     let rafId = null
@@ -30,25 +43,57 @@ export default function Nav() {
   }, [])
 
   return (
-    <nav className={`${styles.nav} ${atTop ? styles.transparent : styles.solid}`}>
-      <a href="#" className={styles.logoWrap}>
-        <img
-          src="/EL_logo.png"
-          alt="EL"
-          className={styles.logoImg}
-        />
-      </a>
+    <>
+      <nav className={`${styles.nav} ${atTop ? styles.transparent : styles.solid}`}>
+        <a href="#" className={styles.logoWrap}>
+          <img
+            src="/EL_logo.png"
+            alt="EL"
+            className={styles.logoImg}
+          />
+        </a>
 
-      <div className={styles.links}>
-        <a href="#benefits">활동 혜택</a>
-        <a href="#activities">활동 사진</a>
-        <a href="#awards">수상내역</a>
-        <a href="#apply">지원하기</a>
+        <div className={styles.links}>
+          {LINKS.map((l) => (
+            <a key={l.href} href={l.href}>{l.label}</a>
+          ))}
+        </div>
+
+        <div className={styles.right}>
+          <a href="#apply" className={styles.cta}>
+            지원하기 →
+          </a>
+
+          <button
+            type="button"
+            className={styles.hamburger}
+            aria-label="메뉴 열기"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(true)}
+          >
+            <span /><span /><span />
+          </button>
+        </div>
+      </nav>
+
+      <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ''}`}>
+        <button
+          type="button"
+          className={styles.closeBtn}
+          aria-label="메뉴 닫기"
+          onClick={() => setMenuOpen(false)}
+        >
+          ✕
+        </button>
+
+        <div className={styles.mobileLinks}>
+          {LINKS.map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
+              {l.label}
+            </a>
+          ))}
+        </div>
       </div>
-
-      <a href="#apply" className={styles.cta}>
-        지원하기 →
-      </a>
-    </nav>
+    </>
   )
 }

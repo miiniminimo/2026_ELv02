@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styles from './Awards.module.css'
 
 const AWARDS = [
@@ -63,6 +64,17 @@ const AWARDS = [
 ]
 
 export default function Awards() {
+  const [openYears, setOpenYears] = useState(() => new Set(['2026']))
+
+  const toggleYear = (year) => {
+    setOpenYears((prev) => {
+      const next = new Set(prev)
+      if (next.has(year)) next.delete(year)
+      else next.add(year)
+      return next
+    })
+  }
+
   return (
     <>
       <div className={styles.divider} />
@@ -76,28 +88,51 @@ export default function Awards() {
         </div>
 
         <div className={styles.timeline}>
-          {AWARDS.map((group, gi) => (
-            <div
-              className={`${styles.yearGroup} fade-up`}
-              key={gi}
-              style={{ transitionDelay: `${gi * 0.1}s` }}
-            >
-              <div className={styles.year}>{group.year}</div>
-              <div className={styles.items}>
-                {group.items.map((item, ii) => (
-                  <div className={styles.item} key={ii}>
-                    <div className={`${styles.medal} ${styles[item.cls]}`}>
-                      {item.medal}
-                    </div>
-                    <div>
-                      <p className={styles.itemName}>{item.name}</p>
-                      <p className={styles.itemOrg}>{item.org}</p>
+          {AWARDS.map((group, gi) => {
+            const isOpen = openYears.has(group.year)
+            return (
+              <div
+                className={`${styles.yearGroup} fade-up`}
+                key={gi}
+                style={{ transitionDelay: `${gi * 0.1}s` }}
+              >
+                <button
+                  type="button"
+                  className={styles.year}
+                  onClick={() => toggleYear(group.year)}
+                  aria-expanded={isOpen}
+                >
+                  {group.year}
+                  <span className={styles.count}>{group.items.length}건</span>
+                  <svg
+                    className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"
+                    width="18" height="18"
+                  >
+                    <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+
+                <div className={`${styles.itemsWrap} ${isOpen ? styles.itemsWrapOpen : ''}`}>
+                  <div className={styles.itemsInner}>
+                    <div className={styles.items}>
+                      {group.items.map((item, ii) => (
+                        <div className={styles.item} key={ii}>
+                          <div className={`${styles.medal} ${styles[item.cls]}`}>
+                            {item.medal}
+                          </div>
+                          <div>
+                            <p className={styles.itemName}>{item.name}</p>
+                            <p className={styles.itemOrg}>{item.org}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </section>
       <div className={styles.divider} />

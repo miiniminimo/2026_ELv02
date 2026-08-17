@@ -21,17 +21,16 @@
 .label {
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text);
   margin-bottom: 20px;
 }
 
 .title {
-  font-family: 'Orbitron', sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
-  font-weight: 900;
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.22;
   margin-bottom: 24px;
 }
 
@@ -72,7 +71,7 @@
 
 .imgWrap {
   width: 100%;
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   overflow: hidden;
   position: relative;
   background: var(--surface);
@@ -106,7 +105,7 @@
   opacity: 0.2;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: var(--radius-card);
 }
 
 /* 카드 아래 텍스트 */
@@ -117,7 +116,8 @@
 .cardCategory {
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
+  color: var(--mute);
   display: block;
   margin-bottom: 3px;
 }

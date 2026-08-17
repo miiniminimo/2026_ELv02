@@ -7,6 +7,7 @@
   height: 100vh;
   z-index: 1;          /* 아래 콘텐츠(z-index: 10)가 위로 덮임 */
   overflow: hidden;    /* 줌 시 video가 넘치지 않게 */
+  background: #000;    /* 모바일에서 contain 시 레터박스를 채움 */
 }
 
 .video {
@@ -21,6 +22,13 @@
   /* JS에서 직접 style 조작하므로 transition 없음 → 더 부드럽게 */
 }
 
+/* 모바일(세로 화면)에서는 영상이 크게 잘리므로 비율을 유지해 레터박스 처리 */
+@media (max-width: 768px) {
+  .video {
+    object-fit: contain;
+  }
+}
+
 .overlay {
   position: absolute;
   inset: 0;
@@ -28,10 +36,10 @@
   /* 흰색 끝 제거 — 이제 카드가 올라오며 덮으므로 불필요 */
   background: linear-gradient(
     to bottom,
-    rgba(0, 10, 40, 0.08)  0%,
-    rgba(0,  0,  0, 0.00) 35%,
-    rgba(0, 10, 40, 0.50) 78%,
-    rgba(0, 10, 40, 0.68) 100%
+    rgba(0, 0, 0, 0.08)  0%,
+    rgba(0, 0, 0, 0.00) 35%,
+    rgba(0, 0, 0, 0.50) 78%,
+    rgba(0, 0, 0, 0.68) 100%
   );
 }
 

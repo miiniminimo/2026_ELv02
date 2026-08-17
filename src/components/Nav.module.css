@@ -26,7 +26,7 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-bottom-color: var(--border);
-  box-shadow: 0 1px 24px rgba(26, 79, 255, 0.06);
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.06);
 }
 
 .solid .links a { color: var(--muted); }
@@ -72,23 +72,111 @@
   color: var(--accent) !important;
 }
 
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
 .cta {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border-radius: 50px;
+  background: var(--accent);
+  border-radius: var(--radius-pill);
   padding: 10px 26px;
   color: #fff;
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .cta:hover {
-  opacity: 0.85;
+  background: var(--accent2);
   transform: translateY(-1px);
+}
+
+/* ── 햄버거 버튼 (모바일 전용) ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text);
+  transition: background 0.3s ease;
+}
+
+.transparent .hamburger span { background: #fff; }
+.solid .hamburger span { background: var(--text); }
+
+/* ── 모바일 전체 화면 메뉴 ── */
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobileMenuOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: none;
+  font-size: 1.1rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.mobileLinks a {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
   .nav { padding: 16px 20px; }
   .links { display: none; }
+  .cta { display: none; }
+  .hamburger { display: flex; }
+}
+
+@media (max-width: 380px) {
+  .mobileLinks a { font-size: 1.35rem; }
 }
