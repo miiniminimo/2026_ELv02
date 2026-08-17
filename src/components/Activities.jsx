@@ -2,22 +2,27 @@ import styles from './Activities.module.css'
 
 /**
  * 활동 사진 추가 방법:
- * 1. /public/activities/ 폴더에 사진 파일 넣기
+ * 1. /public/activities/ 폴더에 사진 파일 넣기 (아래 캐러셀은 /public/gallery/ 사용 — 별도 폴더)
  * 2. 아래 ACTIVITIES 배열에 항목 추가
  *    ratio: 'tall'(3:4) | 'square'(1:1) | 'wide'(4:3)
  */
 const ACTIVITIES = [
-  { img: '/activities/activity01.jpg', title: '논문 발표 세션',      category: 'STUDY',   ratio: 'tall'   },
-  { img: '/activities/activity02.jpg', title: '정기 스터디 미팅',    category: 'STUDY',   ratio: 'square' },
-  { img: '/activities/activity03.jpg', title: '교내 해커톤 참가',    category: 'PROJECT', ratio: 'wide'   },
-  { img: '/activities/activity04.jpg', title: '팀 프로젝트 발표',    category: 'PROJECT', ratio: 'tall'   },
-  { img: '/activities/activity05.jpg', title: '선배 멘토링 세션',    category: 'NETWORK', ratio: 'square' },
-  { img: '/activities/activity06.jpg', title: '동아리 MT',          category: 'EVENT',   ratio: 'tall'   },
-  { img: '/activities/activity07.jpg', title: '수상 시상식',         category: 'AWARD',   ratio: 'wide'   },
-  { img: '/activities/activity08.jpg', title: '네트워킹 파티',       category: 'EVENT',   ratio: 'square' },
-  { img: '/activities/activity09.jpg', title: '논문 리뷰 세션',      category: 'STUDY',   ratio: 'tall'   },
-  { img: '/activities/activity10.jpg', title: '오픈소스 컨트리뷰션', category: 'PROJECT', ratio: 'wide'   },
+  { img: '/activities/activity01.jpg', title: '2026 솜커톤 대상 수상',        category: 'AWARD', ratio: 'wide'   },
+  { img: '/activities/activity02.jpg', title: '동양미래 EXPO 우수상 시상식',  category: 'AWARD', ratio: 'wide'   },
+  { img: '/activities/activity03.jpg', title: '동양미래 EXPO 출품작 선정심사', category: 'EVENT', ratio: 'wide'   },
+  { img: '/activities/activity04.jpg', title: '학교 축제 동아리 부스 운영',    category: 'EVENT', ratio: 'tall'   },
+  { img: '/activities/activity05.jpg', title: 'AI 루키 해커톤 참가',          category: 'EVENT', ratio: 'square' },
+  { img: '/activities/activity06.jpg', title: '2025 솜커톤 최우수상 수상',    category: 'AWARD', ratio: 'wide'   },
+  { img: '/activities/activity07.jpg', title: 'G밸리 작품 한마당 전시',       category: 'EVENT', ratio: 'tall'   },
+  { img: '/activities/activity08.jpg', title: '2026 솜커톤 최우수상 수상',    category: 'AWARD', ratio: 'square' },
+  { img: '/activities/activity09.jpg', title: '동양미래 EXPO 부스 운영',      category: 'EVENT', ratio: 'wide'   },
+  { img: '/activities/activity10.jpg', title: '메가시티 리그전 수상',         category: 'AWARD', ratio: 'square' },
 ]
+
+const CATEGORY_COLOR = {
+  EVENT: '#3B82F6',           /* 블루 */
+  AWARD: '#C9840A',           /* 골드 */
+}
 
 // 홀수 인덱스 → 왼쪽 열 / 짝수 인덱스 → 오른쪽 열
 const leftCol  = ACTIVITIES.filter((_, i) => i % 2 === 0)

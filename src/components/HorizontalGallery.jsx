@@ -1,17 +1,19 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import styles from './HorizontalGallery.module.css'
 
+/**
+ * 캐러셀 사진 추가 방법:
+ * 1. /public/gallery/ 폴더에 사진 파일 넣기 (Activities 섹션과는 별도 폴더 — 사진 중복 방지)
+ * 2. 아래 IMAGES 배열에 경로 추가
+ */
 const IMAGES = [
-  '/activities/activity01.jpg',
-  '/activities/activity02.jpg',
-  '/activities/activity03.jpg',
-  '/activities/activity04.jpg',
-  '/activities/activity05.jpg',
-  '/activities/activity06.jpg',
-  '/activities/activity07.jpg',
-  '/activities/activity08.jpg',
-  '/activities/activity09.jpg',
-  '/activities/activity10.jpg',
+  '/gallery/gallery01.jpg',
+  '/gallery/gallery02.jpg',
+  '/gallery/gallery03.jpg',
+  '/gallery/gallery04.jpg',
+  '/gallery/gallery05.jpg',
+  '/gallery/gallery06.jpg',
+  '/gallery/gallery07.jpg',
 ]
 
 // 3벌 복제 → 양 끝 도달 시 중간으로 점프해서 무한 루프
@@ -123,7 +125,7 @@ export default function HorizontalGallery() {
           >
             <img
               src={src}
-              alt={`activity ${i + 1}`}
+              alt={`gallery ${i + 1}`}
               className={styles.img}
               draggable={false}
               onError={(e) => {
