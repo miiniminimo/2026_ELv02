@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import Recruit from './components/Recruit'
 import Benefits from './components/Benefits'
 import Activities from './components/Activities'
 import Awards from './components/Awards'
@@ -57,7 +58,7 @@ export default function App() {
       el.style.transform       = `scale(${scale.toFixed(4)})`
       el.style.transformOrigin = 'center top'
       el.style.opacity         = opacity.toFixed(3)
-      el.style.borderRadius    = `28px 28px ${brBottom.toFixed(1)}px ${brBottom.toFixed(1)}px`
+      el.style.borderRadius    = `16px 16px ${brBottom.toFixed(1)}px ${brBottom.toFixed(1)}px`
     }
 
     _update()  // 초기 상태 적용
@@ -82,6 +83,7 @@ export default function App() {
 
       {/* 메인 카드: 작은 박스로 시작 → 스크롤하면 전체 너비로 펼쳐짐 */}
       <main ref={mainRef} className={styles.mainContent}>
+        <Recruit />
         <Benefits />
         <Activities />
         <Awards />

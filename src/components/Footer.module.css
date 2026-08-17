@@ -8,19 +8,7 @@
   flex-wrap: wrap;
   gap: 12px;
 
-  /* 흰 배경으로 히어로 영상 가림 — 박스처럼 보이지 않음(body도 흰색) */
   background: var(--bg);
-}
-
-/* 내용물만 투명 처리 → 배경은 유지 */
-.footer > * {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-/* 호버 시 내용 등장 */
-.footer:hover > * {
-  opacity: 1;
 }
 
 .logo {
