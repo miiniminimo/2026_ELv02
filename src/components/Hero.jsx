@@ -30,6 +30,8 @@ export default function Hero() {
         ref={videoRef}
         className={styles.video}
         src="/EL_intro.mp4"
+        poster="/EL_intro_poster.jpg"
+        preload="auto"
         autoPlay
         muted
         loop
