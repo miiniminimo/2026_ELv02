@@ -1,5 +1,8 @@
 import styles from './Recruit.module.css'
 
+// ↓ 폼 신청 URL — Apply.jsx의 FORM_URL과 동일하게 유지하세요
+const FORM_URL = 'https://smore.im/form/xpFvq1OMsG'
+
 // ↓ 모집 대상 / 기간 / 일정 / 혜택 — 날짜와 텍스트는 필요에 맞게 수정하세요
 const INFO_LEFT = [
   {
@@ -79,7 +82,14 @@ export default function Recruit() {
         </p>
       </div>
 
-      <a href="#apply" className={`${styles.btn} fade-up`}>지원하기</a>
+      <a
+        href={FORM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${styles.btn} fade-up`}
+      >
+        지원하기
+      </a>
     </section>
   )
 }

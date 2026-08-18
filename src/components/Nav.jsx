@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import styles from './Nav.module.css'
 
+// ↓ 폼 신청 URL — Apply.jsx의 FORM_URL과 동일하게 유지하세요
+const FORM_URL = 'https://smore.im/form/xpFvq1OMsG'
+
 const LINKS = [
   { href: '#benefits', label: '활동 혜택' },
   { href: '#activities', label: '활동 사진' },
@@ -60,7 +63,7 @@ export default function Nav() {
         </div>
 
         <div className={styles.right}>
-          <a href="#apply" className={styles.cta}>
+          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className={styles.cta}>
             지원하기 →
           </a>
 
