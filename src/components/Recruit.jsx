@@ -36,7 +36,7 @@ export default function Recruit() {
     <section className={styles.section}>
       <div className={`${styles.header} fade-up`}>
         <p className={styles.eyebrow}>Join the Leader</p>
-        <h2 className={styles.title}>24기 신입부원 모집</h2>
+        <h2 className={styles.title}>24.5기 신입부원 모집</h2>
         <p className={styles.subtitle}>COMP. SOFTWARE ENGINEERING PD LAB STAR</p>
       </div>
 
@@ -77,8 +77,8 @@ export default function Recruit() {
       <div className={`${styles.notice} fade-up`}>
         <p className={styles.noticeTitle}>⭐ 복학생 안내 사항</p>
         <p className={styles.noticeDesc}>
-          휴학 전 EL 부원이었던 분들 중 복학 후 동아리 활동을 계속하실 의향이 있는 분들은{' '}
-          문의 사항의 회장 연락처로 문자 주시기 바랍니다.
+          휴학 전 EL 부원이었던 분들 중 복학 후 동아리 활동을 계속하실 의향이 있는 분들은
+          010-8537-2259 회장 김민정으로 연락 주시기 바랍니다.
         </p>
       </div>
 
