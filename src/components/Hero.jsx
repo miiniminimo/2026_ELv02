@@ -5,27 +5,21 @@ export default function Hero() {
   const videoRef = useRef(null)
 
   useEffect(() => {
+    // scroll 이벤트 대신 매 프레임 스크롤 위치를 직접 읽는 rAF 루프 사용
+    // → 해시 링크 진입 등 이벤트가 안 잡히는 스크롤 점프에도 항상 정확히 동기화됨
     let rafId = null
 
-    const update = () => {
+    const tick = () => {
       if (videoRef.current) {
         const progress = Math.min(window.scrollY / window.innerHeight, 1)
         const scale = 1 + progress * 0.14
         videoRef.current.style.transform = `scale(${scale})`
       }
+      rafId = requestAnimationFrame(tick)
     }
 
-    const onScroll = () => {
-      if (rafId) return
-      rafId = requestAnimationFrame(() => { update(); rafId = null })
-    }
-
-    update() // 초기값
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', update, { passive: true })
+    rafId = requestAnimationFrame(tick)
     return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', update)
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])

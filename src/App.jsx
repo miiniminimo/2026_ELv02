@@ -34,12 +34,13 @@ export default function App() {
     const el = mainRef.current
     if (!el) return
 
+    // ── scroll/resize 이벤트에만 의존하면, 해시 링크(#benefits 등)로 바로 진입하거나
+    //    브라우저가 스크롤 위치를 프로그래밍적으로 점프시킬 때 이벤트가 안 잡혀
+    //    카드가 초기 상태(scale 0.5, opacity 0)에 멈춰버리는 문제가 있었음.
+    //    → 매 프레임 스크롤 위치를 직접 읽는 rAF 루프로 전환해 항상 정확히 동기화.
     let rafId = null
-    const update = () => {
-      if (rafId) return
-      rafId = requestAnimationFrame(() => { _update(); rafId = null })
-    }
-    const _update = () => {
+
+    const tick = () => {
       const vh = window.innerHeight
       const sy = window.scrollY
 
@@ -59,14 +60,12 @@ export default function App() {
       el.style.transformOrigin = 'center top'
       el.style.opacity         = opacity.toFixed(3)
       el.style.borderRadius    = `16px 16px ${brBottom.toFixed(1)}px ${brBottom.toFixed(1)}px`
+
+      rafId = requestAnimationFrame(tick)
     }
 
-    _update()  // 초기 상태 적용
-    window.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', _update, { passive: true })
+    rafId = requestAnimationFrame(tick)
     return () => {
-      window.removeEventListener('scroll', update)
-      window.removeEventListener('resize', _update)
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])

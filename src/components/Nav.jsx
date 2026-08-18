@@ -21,26 +21,23 @@ export default function Nav() {
   }, [menuOpen])
 
   useEffect(() => {
+    // scroll 이벤트 대신 매 프레임 스크롤 위치를 직접 읽는 rAF 루프 사용
+    // → 해시 링크(#benefits 등)로 바로 진입해 이벤트가 안 잡히는 경우에도
+    //   nav가 "맨 위" 상태(투명 배경)로 멈춰있지 않도록 항상 정확히 동기화
     let rafId = null
     let current = true   // 현재 atTop 값 추적 (re-render 없이)
 
-    const handleScroll = () => {
-      // rAF로 throttle: 프레임당 최대 1회만 계산
-      if (rafId) return
-      rafId = requestAnimationFrame(() => {
-        const next = window.scrollY < window.innerHeight - 80
-        // 값이 실제로 바뀔 때만 setState → 불필요한 transition 차단
-        if (next !== current) {
-          current = next
-          setAtTop(next)
-        }
-        rafId = null
-      })
+    const tick = () => {
+      const next = window.scrollY < window.innerHeight - 80
+      if (next !== current) {
+        current = next
+        setAtTop(next)
+      }
+      rafId = requestAnimationFrame(tick)
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    rafId = requestAnimationFrame(tick)
     return () => {
-      window.removeEventListener('scroll', handleScroll)
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
