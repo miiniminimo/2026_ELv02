@@ -51,33 +51,35 @@ function Card({ img, title, category, ratio }) {
 export default function Activities() {
   return (
     <section id="activities" className={styles.section}>
+      <div className={styles.inner}>
 
-      {/* 왼쪽 sticky 텍스트 */}
-      <div className={styles.left}>
-        <p className={styles.label}>Activities</p>
-        <h2 className={styles.title}>
-          우리가<br />함께한<br />순간들
-        </h2>
-        <p className={styles.desc}>
-          논문 스터디부터 해커톤,<br />
-          네트워킹, 수상까지<br />
-          EL의 다양한 활동을 담았습니다.
-        </p>
-      </div>
-
-      {/* 오른쪽 교차 배열: 두 열을 독립적으로 렌더링 */}
-      <div className={styles.grid}>
-
-        {/* 왼쪽 카드 열 (0, 2, 4...) */}
-        <div className={styles.colLeft}>
-          {leftCol.map((item, i) => <Card key={i} {...item} />)}
+        {/* 왼쪽 sticky 텍스트 */}
+        <div className={styles.left}>
+          <p className={styles.label}>Activities</p>
+          <h2 className={styles.title}>
+            우리가<br />함께한<br />순간들
+          </h2>
+          <p className={styles.desc}>
+            논문 스터디부터 해커톤,<br />
+            네트워킹, 수상까지<br />
+            EL의 다양한 활동을 담았습니다.
+          </p>
         </div>
 
-        {/* 오른쪽 카드 열 (1, 3, 5...) — margin-top으로 아래로 밀어서 교차 효과 */}
-        <div className={styles.colRight}>
-          {rightCol.map((item, i) => <Card key={i} {...item} />)}
-        </div>
+        {/* 오른쪽 교차 배열: 두 열을 독립적으로 렌더링 */}
+        <div className={styles.grid}>
 
+          {/* 왼쪽 카드 열 (0, 2, 4...) */}
+          <div className={styles.colLeft}>
+            {leftCol.map((item, i) => <Card key={i} {...item} />)}
+          </div>
+
+          {/* 오른쪽 카드 열 (1, 3, 5...) — margin-top으로 아래로 밀어서 교차 효과 */}
+          <div className={styles.colRight}>
+            {rightCol.map((item, i) => <Card key={i} {...item} />)}
+          </div>
+
+        </div>
       </div>
     </section>
   )
